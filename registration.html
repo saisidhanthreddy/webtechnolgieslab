@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>REGISTRATION</title>
+</head>
+
+<body>
+    <form name="login" method="post" action="">
+        <fieldset>
+            <legend>REGISTRATION</legend>
+            Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style="margin-bottom: 10px" type="text"
+                placeholder="enter your name" name="Name"><br>
+            Password:<input style="margin-bottom: 10px;" type="password" placeholder="enter your password"
+                name="Password"><br>
+            EmailId:&nbsp;&nbsp;<input style="margin-bottom: 10px;" type="email" placeholder="enter your EmailId"
+                id="EmailId"><br>
+            PhoneNumber:<input style="margin-bottom: 10px;" type="text" placeholder="9238324523"
+                id="PhoneNumber"><br>
+            Gender:<br><br><input style="margin-bottom: 10px;" type="radio" id="Male" name="Male" value="Male">
+            <label for="Male">Male</label><br>
+            <input type="radio" id="Female" name="Female" value="Female">
+            <label for="Female">Female</label><br>
+            <input type="radio" id="other" name="other" value="Other">
+            <label for="other">Other</label><br><br>
+            DateOfBirth:<br><input style="margin-bottom: 10px;" type="date" name="date"><br>
+            LanguagesKnown:<br><input type="checkbox" id="ENGLISH" name="ENGLISH" value="ENGLISH">
+            <label for="ENGLISH">ENGLISH</label><br>
+            <br><input type="checkbox" id="HINDI" name="HINDI" value="HINDI">
+            <label for="HINDI">HINDI</label><br>
+            <br><input type="checkbox" id="TELUGU" name="TELUGU" value="TELUGU">
+            <label for="TELUGU">TELUGU</label><br>
+            <label for="Address">Address:</label><br>
+            <textarea name="Address" placeholder="enter your Address" id="Address" cols="30" rows="2"></textarea><br>
+            <input style="margin-bottom: 10px;" type="submit" name="Register" onclick="Validate()"
+                value="Register">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input style="margin-bottom: 10px;" type="reset" name="reset">
+
+
+
+        </fieldset>
+    </form>
+    <script language="javascript">
+        function Validate() {
+
+            //Valiadtion for password(only the length is checked here)
+            var pass = document.forms[0].elements["Password"].value;
+            //Validation for name...(should start with a letter and can contain any number at last)
+            var name = document.forms[0].elements["Name"].value;
+            var p1 = new RegExp("^[a-z A-Z]+[^0-9]+$");
+            //Validation for phone number...(length is exact 10 digits length)
+            var p2 = new RegExp("^[0-9]+$");
+            var number = document.getElementById("PhoneNumber").value;
+            //Validation for email id
+            var p3 = /^[a-zA-Z_.-]+[0-9]*([@]{1})+[a-z-]+([.]{1})+[a-z]+$/ ;
+            var em = document.getElementById("EmailId").value;
+
+            if (name == "") {
+                alert("Name must be filled out");
+            }
+            else if(!p1.test(name))
+            {
+                alert("pattern mismatch enter a valid name of only characters");
+                if(name.length < 6)
+                    alert(" name should be atleast 6 characters length and only contain characters ");
+            }
+            else if(pass.length < 6)
+            {
+                alert("password must be atleast 6 characters long");
+            }
+			else if(number == "") {
+				alert("phone number should be exact 10 digits check once again");
+			}
+			else if (!p2.test(number))
+            {
+                alert("The phone number should only contain digits");
+                if( number.length != 10)
+                    alert("Your phone number should be exact 10 digits");
+            }
+            else if(!p3.test(em))
+            {
+                alert("The mail id is not a valid one find it and replace");
+            }
+			else
+            {
+				alert("registration is successfull");		
+			}
+        }
+    </script>
+</body>
+
+</html>
